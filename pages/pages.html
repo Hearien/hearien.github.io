@@ -1,0 +1,182 @@
+<!DOCTYPE> 
+<html>
+<head>
+<meta charset="UTF-8">  
+<title>原生JS实现数据分页</title>
+<style type="text/css">
+#tb{width:1000px;height:500px;background-color:#aaa;}
+table{border:1px}
+.btnactive{background-color:#00BFFF}
+</style>
+</head>
+<body>
+<div id="tb"></div>
+<script type="text/javascript">
+	var data = [
+            {
+                "id": 0,
+                "name": "Item 0",
+                "price": "$0"
+            },
+            {
+                "id": 1,
+                "name": "Item 1",
+                "price": "$1"
+            },
+            {
+                "id": 2,
+                "name": "Item 2",
+                "price": "$2"
+            },
+            {
+                "id": 3,
+                "name": "Item 3",
+                "price": "$3"
+            },
+            {
+                "id": 4,
+                "name": "Item 4",
+                "price": "$4"
+            },
+            {
+                "id": 12,
+                "name": "Item 5",
+                "price": "$5"
+            },
+			{
+                "id": 5,
+                "name": "Item 5",
+                "price": "$5"
+            },
+			{
+                "id": 6,
+                "name": "Item 5",
+                "price": "$5"
+            },
+			{
+                "id": 7,
+                "name": "Item 5",
+                "price": "$5"
+            },
+			{
+                "id": 8,
+                "name": "Item 5",
+                "price": "$5"
+            },
+			{
+                "id": 9,
+                "name": "Item 5",
+                "price": "$5"
+            },{
+                "id": 10,
+                "name": "Item 5",
+                "price": "$5"
+            },
+			{
+                "id": 11,
+                "name": "Item 5",
+                "price": "$5"
+            }
+        ];
+		var jsonData = eval(data);
+		var pageSize = 3;
+	window.onload = function(){
+		goToPage(pageSize,1);
+	}
+	
+	function loadData(data,index){
+		var pages = getTotalPages(pageSize);
+		var tbDiv = document.getElementById("tb");
+		var tb = "<table border=1>";
+		for(var i = 0;i < data.length;i++){
+			tb+="<tr>";
+			tb+="<td>"+data[i].id+"</td>";
+			tb+="<td>"+data[i].name+"</td>";
+			tb+="<td>"+data[i].price+"</td>";
+			tb+="</tr>";
+		}
+		tb+="</table>";
+		tb+="<div>";
+		
+		tb+="<button onclick='pre("+pageSize+","+index+")'>上一页</button>";
+		for(var j = 1;j<=pages;j++){
+			if(index==j){
+				tb+="<button class='btnactive' onclick='goToPage("+pageSize+","+j+")'>"+j+"</button>";
+			}else{
+				tb+="<button onclick='goToPage("+pageSize+","+j+")'>"+j+"</button>";
+			}
+		}
+		tb+="<button onclick='next("+pageSize+","+index+")'>下一页</button>";
+		tb+="</div>";
+		tbDiv.innerHTML=tb;
+	}
+	
+	function next(pageSize,index){
+		var pages = getTotalPages(pageSize);
+		var arrayObj = new Array();
+		if((index+1) > pages){
+			return ;
+		}else{
+			var startIndex = index * pageSize;
+			var endIndex = (index+1) * pageSize - 1;
+			if(endIndex > jsonData.length){
+				endIndex = jsonData.length - 1;
+			}
+			for(var i = startIndex;i<=endIndex;i++){
+				arrayObj.push(jsonData[i]);
+			}
+			//return arrayObj;
+		}
+		console.log(arrayObj);
+		loadData(arrayObj,index+1);
+	}
+	
+	function pre(pageSize,index){
+		var arrayObj = new Array();
+		if((index-1) < 1){
+			return ;
+		}else{
+			var startIndex = (index-2) * pageSize;
+			var endIndex = (index-1) * pageSize - 1;
+			if(startIndex < 0){
+				startIndex = 0;
+			}
+			for(var i = startIndex;i<=endIndex;i++){
+				arrayObj.push(jsonData[i]);
+			}
+			//return arrayObj;
+		}
+		console.log(arrayObj);
+		loadData(arrayObj,index-1);
+	}
+	
+	function goToPage(pageSize,index){
+		var arrayObj = new Array();
+		var startIndex = (index-1) * pageSize;
+		var endIndex = index * pageSize - 1;
+		if(endIndex > jsonData.length){
+			endIndex = jsonData.length - 1;
+		}
+		for(var i = startIndex;i<=endIndex;i++){
+				arrayObj.push(jsonData[i]);
+		}
+		//return arrayObj;
+		loadData(arrayObj,index);
+	}
+	
+	function getTotalPages(pageSize){
+		var totalPages = 0;
+		var length = jsonData.length;
+		var tmpPages = parseInt(length/pageSize);
+		if(length%pageSize==0){
+			totalPages = tmpPages;
+		}else{
+			totalPages = tmpPages + 1;
+		}
+		return totalPages;
+	}
+	
+	
+</script>
+</body>
+</html>
