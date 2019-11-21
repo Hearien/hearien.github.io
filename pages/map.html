@@ -30,7 +30,7 @@
     //创建地图函数：
     function createMap(){
         var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-        var point = new BMap.Point(106.494679,29.641714);//定义一个中心点坐标
+        var point = new BMap.Point(106.504513,29.373066);//定义一个中心点坐标
         map.centerAndZoom(point,15);//设定地图的中心点和坐标并将地图显示在地图容器中
         window.map = map;//将map变量存储在全局
     }
@@ -57,7 +57,7 @@
     }
     
     //标注点数组
-    var markerArr = [{title:"现居住地",content:"重庆市渝北区康庄美地",point:"106.485516|29.640961",isOpen:1,icon:{w:21,h:21,l:46,t:46,x:1,lb:10}}
+    var markerArr = [{title:"现居住地",content:"重庆市巴南区云篆山水",point:"106.504513|29.373066",isOpen:1,icon:{w:21,h:21,l:46,t:46,x:1,lb:10}}
 		 ];
     //创建marker
     function addMarker(){

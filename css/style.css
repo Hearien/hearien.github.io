@@ -145,7 +145,8 @@ span.glyphicon.glyphicon-triangle-bottom {
   font-size: 1em;
   font-weight: 400;
   color: #9CA69D;
-    line-height: 1.8em;
+  line-height: 1.8em;
+  text-align: left;
 }
 span.glyphicon.glyphicon-pencil {
   font-size: 2em;
