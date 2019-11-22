@@ -63,16 +63,31 @@
     <div class="yun4 yun"> </div>
 	
 	<canvas id="canvas">你的浏览器不支持HTML5画布技术，请使用支持HTML5的浏览器(http://keleyi.com/a/bjac/g039tue3.htm)</canvas>
-	<audio src="res/love.mp3" autoplay="autoplay" loop="true" id="audio"></audio>
+	<audio autoplay="autopaly" loop="loop" controls="controls" id="audios">
+	    <source src="res/love.mp3" type="audio/mp3" />
+	</audio>
     <script src="/themes/sy/bd250x200xfa.js"></script>
     <script src="/themes/hvt/js/ggtj.js"></script>
     <script src="/themes/tj/btj.js"></script>
 	<script type="text/javascript" src="res/ge1doot.js"></script>
 	<script src="../js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript">
-        $(function () {
-            $("#audio")[0].play();
-        })
+        var music = document.getElementById('video');
+	  var state = 0;
+      document.addEventListener('touchstart', function(){    
+          if(state==0){        
+              music.play();        
+              state=1;    
+          }
+      }, false);
+      document.addEventListener("WeixinJSBridgeReady", function () {    
+          music.play();
+      }, false);
+      //循环播放
+      music.onended = function () {    
+          music.load();    
+          music.play();
+      }
     </script>
     <script type="text/javascript">
         /* 
