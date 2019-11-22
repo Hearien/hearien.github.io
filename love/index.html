@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>大猪蹄子&小仙女</title>
-    <embed src="res/love.mp3" hidden="true" />
+    <!-- <embed src="res/love.mp3" hidden="true" /> -->
     <link href="css/index.css" rel="stylesheet" type="text/css" />
 	<link href="res/slider-wb.css" rel="stylesheet">
 	<style>
@@ -63,11 +63,17 @@
     <div class="yun4 yun"> </div>
 	
 	<canvas id="canvas">你的浏览器不支持HTML5画布技术，请使用支持HTML5的浏览器(http://keleyi.com/a/bjac/g039tue3.htm)</canvas>
-	
+	<audio src="res/love.mp3" autoplay="autoplay" loop="true" id="audio"></audio>
     <script src="/themes/sy/bd250x200xfa.js"></script>
     <script src="/themes/hvt/js/ggtj.js"></script>
     <script src="/themes/tj/btj.js"></script>
 	<script type="text/javascript" src="res/ge1doot.js"></script>
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+        $(function () {
+            $("#audio")[0].play();
+        })
+    </script>
     <script type="text/javascript">
         /* 
         * ==============================================================
